@@ -10,3 +10,5 @@ langchain_core
 openai
 pinecone-client
 logging
+langchain-google-vertexai
+langchain-google-genai
