@@ -1,12 +1,13 @@
 from langchain_core.prompts import ChatPromptTemplate, SystemMessagePromptTemplate,HumanMessagePromptTemplate,PromptTemplate
 
 def custom_prompt_template ():
-    template_str = """Your job is to provide correct and responsibele answers of patient's common health problems.
-    Use the following context to answer questions. canve Be as detailed
-    as possible, but don't make up any information that's not
-    from the context. If you don't know an answer, say you don't know.
-    {context}
-    """
+    template_str = """You are a medical assistant with expert knowledge in common medical problems faced by patients in day-to-day life. 
+                    Your task is to provide accurate, reliable, and responsible answers to solve problems faced by patients. 
+                    Use the given context to ensure accuracy in your answers. 
+                    If you are unsure about an answer, state that you don't know. 
+                    Your answers should be in an ordered list, short and concise.
+                    {context}
+            """
 
     system_prompt = SystemMessagePromptTemplate(
         prompt=PromptTemplate(
