@@ -1,7 +1,5 @@
 from dotenv import load_dotenv
 import os
-from langchain_openai import ChatOpenAI
-from langchain_google_genai import HarmBlockThreshold, HarmCategory, ChatGoogleGenerativeAI
 from langchain_google_vertexai import ChatVertexAI
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
@@ -35,7 +33,6 @@ def med_QA(ques):
         | output_parser
     )
     
-    # Invoke the QA chain with the input question
     return qa_chain.invoke(input=ques)
 
 
