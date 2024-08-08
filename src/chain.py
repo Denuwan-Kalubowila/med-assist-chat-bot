@@ -3,8 +3,8 @@ import os
 from langchain_google_vertexai import ChatVertexAI
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
-from med_assist_retriever import med_assist_retriver_pinecone_db, med_assist_retriver_chroma_db
-from prompt import custom_prompt_template
+from src.med_assist_retriever import med_assist_retriver_pinecone_db
+from src.prompt import custom_prompt_template
 
 load_dotenv()
 

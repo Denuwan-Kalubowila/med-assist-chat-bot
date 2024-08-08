@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from chain import med_QA  
+from src.chain import med_QA  
 
 
 app = FastAPI(
