@@ -1,12 +1,12 @@
 fastapi==0.111.1
 pydantic==2.8.2
 uvicorn==0.30.3
+absl-py==0.15.0
+grpcio
 python-dotenv
 langchain_community
-langchain_openai
 langchain_pinecone
 langchain_core
-openai 
 pinecone-client
 langchain-google-vertexai
 langchain-google-genai
