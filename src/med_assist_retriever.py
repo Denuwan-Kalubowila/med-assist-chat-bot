@@ -22,7 +22,7 @@ os.environ['GOOGLE_API_KEY'] = google_api_key
 
 # Load the CSV file
 loader = DirectoryLoader(
-    "/app/data", 
+    "../data", 
     show_progress=True,
     loader_cls=CSVLoader
 )
