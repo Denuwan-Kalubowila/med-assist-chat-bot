@@ -17,6 +17,7 @@ os.environ['GOOGLE_API_KEY'] = google_api_key
 
 model = ChatVertexAI(
     model='gemini-1.5-flash',
+    project='medassist-419918',
 )
 
 output_parser = StrOutputParser()

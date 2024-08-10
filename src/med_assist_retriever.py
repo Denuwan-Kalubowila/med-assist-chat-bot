@@ -21,13 +21,13 @@ if not google_api_key:
 os.environ['GOOGLE_API_KEY'] = google_api_key
 
 # Load the CSV file
-loader = DirectoryLoader(
-    "/app/data", 
-    show_progress=True,
-    loader_cls=CSVLoader
-)
-data = loader.load()
-textChunks= RecursiveCharacterTextSplitter(chunk_size=1000,chunk_overlap=200).split_documents(data)
+# loader = DirectoryLoader(
+#     "/app/data", 
+#     show_progress=True,
+#     loader_cls=CSVLoader
+# )
+# data = loader.load()
+# textChunks= RecursiveCharacterTextSplitter(chunk_size=1000,chunk_overlap=200).split_documents(data)
 google_embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
 
 db = PineconeVectorStore(
@@ -36,12 +36,12 @@ db = PineconeVectorStore(
     pinecone_api_key=pc_key,
 )
 
-vector_data = db.add_documents(documents=textChunks)
+# vector_data = db.add_documents(documents=textChunks)
 
-if (vector_data):
-    print("Successfully added Data")
-else:
-    print("Retry")
+#if (vector_data):
+#     print("Successfully added Data")
+# else:
+#     print("Retry")
 
 def med_assist_retriver_pinecone_db():
     try:
