@@ -28,6 +28,7 @@ os.environ['GOOGLE_API_KEY'] = google_api_key
 # )
 # data = loader.load()
 # textChunks= RecursiveCharacterTextSplitter(chunk_size=1000,chunk_overlap=200).split_documents(data)
+
 google_embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
 
 db = PineconeVectorStore(
