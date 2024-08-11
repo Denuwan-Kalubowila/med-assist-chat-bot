@@ -13,16 +13,10 @@ RUN --mount=type=cache,target=/root/.cache/pip \
     --mount=type=bind,source=requirements.txt,target=requirements.txt \
     python -m pip install -r requirements.txt
 
-# Copy the application files
 COPY . .
 
-# Copy the .env file
 COPY .env .env
 
-# Expose the port
 EXPOSE 8000
 
-# Set environment variables from the .env file
-# The following line reads the .env file and exports each variable
-CMD ["/bin/bash", "-c", "set -o allexport && source .env && set +o allexport && uvicorn src.main:app --reload --host 0.0.0.0 --port 8000"]
-
+CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
