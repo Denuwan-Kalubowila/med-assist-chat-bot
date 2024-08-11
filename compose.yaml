@@ -1,0 +1,14 @@
+services:
+  server:
+    build:
+      context: .
+    ports:
+      - 8000:8000
+    env_file:
+      - .env
+    environment:
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/gcloud/application_default_credentials.json
+    volumes:
+      - C:\Users\DENUWAN\AppData\Roaming\gcloud\application_default_credentials.json:/app/gcloud/application_default_credentials.json
+
+
