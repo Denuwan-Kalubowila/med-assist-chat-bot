@@ -1,9 +1,7 @@
-from dotenv import load_dotenv
 import os
-from langchain_community.document_loaders import DirectoryLoader,CSVLoader
+from dotenv import load_dotenv
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_pinecone.vectorstores import PineconeVectorStore
-from langchain.text_splitter import RecursiveCharacterTextSplitter
 from absl import logging
 
 load_dotenv()
@@ -20,14 +18,6 @@ if not google_api_key:
     raise EnvironmentError("GOOGLE_API_KEY environment variable is not set.")
 os.environ['GOOGLE_API_KEY'] = google_api_key
 
-# Load the CSV file
-# loader = DirectoryLoader(
-#     "/app/data", 
-#     show_progress=True,
-#     loader_cls=CSVLoader
-# )
-# data = loader.load()
-# textChunks= RecursiveCharacterTextSplitter(chunk_size=1000,chunk_overlap=200).split_documents(data)
 google_embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
 
 db = PineconeVectorStore(
@@ -36,14 +26,14 @@ db = PineconeVectorStore(
     pinecone_api_key=pc_key,
 )
 
-# vector_data = db.add_documents(documents=textChunks)
-
-#if (vector_data):
-#     print("Successfully added Data")
-# else:
-#     print("Retry")
-
 def med_assist_retriver_pinecone_db():
+    """
+    Retrieves the PineconeVectorStore instance for the medical assistant.
+
+    Returns:
+        PineconeVectorStore: The instance of the PineconeVectorStore for the medical assistant.
+        None: If there was an error creating the PineconeVectorStore.
+    """
     try:
         ins_pinecon_data = db
         return ins_pinecon_data

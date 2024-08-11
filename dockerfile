@@ -19,5 +19,4 @@ COPY .env .env
 
 EXPOSE 8000
 
-CMD ["/bin/bash", "-c", "set -o allexport && source .env && set +o allexport && uvicorn src.main:app --reload --host 0.0.0.0 --port 8000"]
-
+CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
