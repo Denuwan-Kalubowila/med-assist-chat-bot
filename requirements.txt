@@ -9,6 +9,5 @@ langchain_pinecone
 langchain_core
 pinecone-client
 langchain-google-vertexai
-langchain-google-genaigcloud 
 
 
