@@ -1,3 +1,4 @@
+""" This module contains the function to retrieve the PineconeVectorStore instance"""
 import os
 from dotenv import load_dotenv
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
@@ -21,7 +22,7 @@ os.environ['GOOGLE_API_KEY'] = google_api_key
 google_embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
 
 db = PineconeVectorStore(
-    index_name="med-chat-common",
+    index_name="medichat",
     embedding=google_embeddings,
     pinecone_api_key=pc_key,
 )
