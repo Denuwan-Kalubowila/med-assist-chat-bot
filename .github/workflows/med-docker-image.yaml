@@ -20,7 +20,7 @@ jobs:
 
             - name: set short SHA
               id: vars
-              run: echo "SHORT_SHA=${{github.sha}} | cut -c1-5" >> $GITHUB_ENV
+              run: echo "SHORT_SHA=$(echo {{github.sha}} | cut -c1-5)" >> $GITHUB_ENV
 
             - name: Build and push Docker image
               uses: docker/build-push-action@v2
