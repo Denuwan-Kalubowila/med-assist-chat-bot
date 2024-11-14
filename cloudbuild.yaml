@@ -19,8 +19,8 @@ steps:
       - 'managed'
       - '--allow-unauthenticated'
       - '--set-secrets'
-      - 'GOOGLE_API_KEY=projects/medassist-419918/secrets/GOOGLE_API_KEY/versions/latest' 
-      - 'PINECONE_API_KEY=projects/medassist-419918/secrets/PINECONE_API_KEY/versions/latest'
+      - 'GOOGLE_API_KEY=projects/medassist-419918/secrets/GOOGLE_API_KEY:latest' 
+      - 'PINECONE_API_KEY=projects/medassist-419918/secrets/PINECONE_API_KEY:latest'
 
 images:
   - 'us-central1-docker.pkg.dev/medassist-419918/my-chat-app/chat-image:$COMMIT_SHA'
