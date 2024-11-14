@@ -34,61 +34,54 @@ med_context_template = custom_prompt_template()
 # Initialize the retriever database
 retriever_db = med_assist_retriver_pinecone_db()
 
-def conversational_memory() -> ConversationBufferWindowMemory:
-    return ConversationBufferWindowMemory(
+conversational_memory = ConversationBufferWindowMemory(
     memory_key='chat_history',
     k=4,
     return_messages=True 
 )
-def qa_chain():
-    qa =(
-            {
-                "context": retriever_db.as_retriever(),
-                "question": RunnablePassthrough(),
-            } 
-            | med_context_template
-            | model 
-            | output_parser
-    )
-    return qa.invoke
+
+qa =(
+        {
+            "context": retriever_db.as_retriever(),
+            "question": RunnablePassthrough(),
+        } 
+        | med_context_template
+        | model 
+        | output_parser
+)
 
 tools =[
     Tool(
         name='Medical Advisor',
-        func= qa_chain(),
+        func= qa.invoke,
         description=(
             "This tool provides medical advice to patients based on their symptoms."
         )
     )
 ]
 
-def agent():
-    return create_react_agent(
+agent = create_react_agent(
     tools=tools,
     llm=model,
     prompt=med_template,
-    )
+)
 
-def agent_executor()-> AgentExecutor:
-    return AgentExecutor(
-        agent=agent(),
-        memory=conversational_memory(),
-        tools=tools,
-        verbose=True,
-        max_iterations=30,
-        max_execution_time=100,
-        handle_parsing_errors=True,
-    )
+agent_executor = AgentExecutor(
+    agent=agent,
+    memory=conversational_memory,
+    tools=tools,
+    verbose=True,
+    max_iterations=30,
+    max_execution_time=100,
+    handle_parsing_errors=True,
+)
 
 def handle_user_input(user_input: str):
     """Process user input using the medical assistant chain."""
     try:
         # Invoke the agent executor with user input
-        agent=agent_executor()
-        response = agent.invoke({"input": user_input})
+        response = agent_executor.invoke({"input": user_input})
         return response['output'],response['chat_history']
     except Exception as e:
         logging.error(f"Error processing input: {e}")
-        return "Sorry, something went wrong while processing your request."
-
-
+        return "Sorry, something went wrong while processing your request.",[]
